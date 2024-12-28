@@ -154,13 +154,18 @@ namespace WpfApp1
             {
                 _timer.Stop();
                 _isPomodoro = !_isPomodoro;
-                
-                    int shortBreakTime = Properties.Settings.Default.ShortBreak;
+                int shortBreakTime = Properties.Settings.Default.ShortBreak;
                 _remainingTime = TimeSpan.FromMinutes(shortBreakTime);
-                    UpdateTimerDisplay();
-                    _timer.Start();
-                
-                
+                UpdateTimerDisplay();
+                _timer.Start();
+
+                pauseButton.Visibility = Visibility.Hidden;
+                playButton.Visibility = Visibility.Hidden;
+                stopButton.Visibility = Visibility.Hidden;
+
+                plusButton.Visibility = Visibility.Visible;
+                skipButton.Visibility = Visibility.Visible;
+
             }
         }
 
