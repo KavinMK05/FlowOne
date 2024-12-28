@@ -181,7 +181,9 @@ namespace WpfApp1
             plusButton.Visibility = Visibility.Hidden;
             skipButton.Visibility = Visibility.Hidden;
 
-            playButton.RenderTransform = null;
+
+            playButton.RenderTransform = Transform.Identity;
+            
         }
 
         //Updating the Timer text box
