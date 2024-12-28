@@ -15,7 +15,7 @@ namespace WpfApp1
         private DispatcherTimer _timer;
         private TimeSpan _remainingTime;
         private bool _isPomodoro = true; //True for pomodoro , and false for break
-       
+        
 
 
 
@@ -155,8 +155,8 @@ namespace WpfApp1
                 _timer.Stop();
                 _isPomodoro = !_isPomodoro;
                 
-                    
-                    _remainingTime = TimeSpan.FromMinutes(5);
+                    int shortBreakTime = Properties.Settings.Default.ShortBreak;
+                _remainingTime = TimeSpan.FromMinutes(shortBreakTime);
                     UpdateTimerDisplay();
                     _timer.Start();
                 
@@ -171,7 +171,8 @@ namespace WpfApp1
                 
                 _timer.Stop();
                 _isPomodoro = !_isPomodoro;
-                _remainingTime = TimeSpan.FromMinutes(5);
+            int shortBreakTime = Properties.Settings.Default.ShortBreak;
+            _remainingTime = TimeSpan.FromMinutes(shortBreakTime);
                 UpdateTimerDisplay();
                 _timer.Start();
 
@@ -201,7 +202,8 @@ namespace WpfApp1
                 
                 _timer.Stop();
                 _isPomodoro = !_isPomodoro;
-                _remainingTime = TimeSpan.FromMinutes(50);
+            int pomodoroTime = Properties.Settings.Default.Pomodoro;
+            _remainingTime = TimeSpan.FromMinutes(pomodoroTime);
                 UpdateTimerDisplay();
                 //_timer.Start();  
             
@@ -229,8 +231,7 @@ namespace WpfApp1
             settings_window settings_Window = new();
             settings_Window.ShowDialog();
 
-            int pomodoroTime = Properties.Settings.Default.Pomodoro;
-            int shortBreakTime = Properties.Settings.Default.ShortBreak;
+            
         }
 
 
