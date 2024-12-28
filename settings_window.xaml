@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Window1" Height="450" Width="600">
+        Title="Settings" Height="450" Width="600">
     <Canvas>
         <TextBlock Text="Pomodoro" FontFamily="Inter" FontSize="15" FontWeight="Medium" Canvas.Left="50" Canvas.Top="30"/>
-        <TextBox Text="{Binding Pomodoro}" Width="40" Canvas.Left="450" 
+        <TextBox x:Name="PomodoroTextBox" Width="40" Canvas.Left="450" 
                  Canvas.Top="30"/>
         <TextBlock Text="Break" FontFamily="Inter" FontSize="15" FontWeight="Medium" Canvas.Left="50" Canvas.Top="60"/>
-        <TextBox Text="{Binding ShortBreak}" Width="40" Canvas.Left="450" 
+        <TextBox x:Name="ShortBreakTextBox" Width="40" Canvas.Left="450" 
          Canvas.Top="60"/>
-        <Button Content="Save" Canvas.Bottom="20" Canvas.Right="30" Click="SaveSettings"/>
+        <Button Content="Save" Canvas.Bottom="20" Canvas.Right="30" Click="SaveButton_Click"/>
     </Canvas>
 </Window>

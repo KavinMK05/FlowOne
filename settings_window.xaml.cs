@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Configuration;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace WpfApp1
 {
@@ -20,23 +8,20 @@ namespace WpfApp1
     /// </summary>
     public partial class settings_window : Window
     {
-        Configuration AppConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
         public settings_window()
         {
             InitializeComponent();
 
-            if (AppConfig.Sections["PomodoroTimerSettings"] is null)
-            {
-                AppConfig.Sections.Add("PomodoroTimerSettings", new PomodoroTimerSettings());
+            PomodoroTextBox.Text = Properties.Settings.Default.Pomodoro.ToString();
+            ShortBreakTextBox.Text = Properties.Settings.Default.ShortBreak.ToString();
 
-            }
-
-            var PomodoroSettingSection = AppConfig.GetSection("PomodoroTimerSettings");
-            this.DataContext = PomodoroSettingSection;
         }
-        private void SaveSettings(object sender, RoutedEventArgs e)
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            AppConfig.Save();
+            Properties.Settings.Default.Pomodoro = int.Parse(PomodoroTextBox.Text);
+            Properties.Settings.Default.ShortBreak = int.Parse(ShortBreakTextBox.Text);
+            Properties.Settings.Default.Save();
+            this.Close();
         }
     }
 }
