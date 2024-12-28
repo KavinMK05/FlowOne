@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="assets\menu.png" />
+    <None Remove="assets\pause.png" />
+    <None Remove="assets\plus_one.png" />
+    <None Remove="assets\skip_final_icon.png" />
+    <None Remove="assets\stop_button.png" />
+    <None Remove="assets\Vector.png" />
+    <None Remove="vector.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="assets\plus_one.png" />
+    <Resource Include="assets\menu.png" />
+    <Resource Include="assets\pause.png" />
+    <Resource Include="assets\skip_final_icon.png" />
+    <Resource Include="assets\stop_button.png" />
+    <Resource Include="assets\Vector.png" />
+  </ItemGroup>
+
+</Project>
