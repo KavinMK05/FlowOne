@@ -89,7 +89,7 @@
                 </Border>
 
                 <!--Plus Button-->
-                <Border x:Name="plusButton" Background="#A9ABAD" CornerRadius="100" Height="35" Width="35" Cursor="Hand" Canvas.Left="167" Canvas.Top="15" MouseLeftButtonDown="PauseButton_Click" Visibility="Hidden">
+                <Border x:Name="plusButton" Background="#A9ABAD" CornerRadius="100" Height="35" Width="35" Cursor="Hand" Canvas.Left="167" Canvas.Top="15" MouseLeftButtonDown="plusOneButton_Click" Visibility="Hidden">
                     
                     <Border.Style>
                         <Style TargetType="Border">

@@ -39,9 +39,13 @@ namespace WpfApp1
 
 
             //Pomodoro timer 
-            int PomodoroTime = PomodoroSettingSection.Pomodoro;
+            if(PomodoroSettingSection is not null)
+            {
+                int PomodoroTime = PomodoroSettingSection.Pomodoro;
             _remainingTime = TimeSpan.FromMinutes(PomodoroTime); //Sets Timer 
             UpdateTimerDisplay();
+            }
+            
             
 
 
@@ -86,9 +90,13 @@ namespace WpfApp1
             playButton.Visibility = Visibility.Hidden;
             pauseButton.Visibility = Visibility.Visible;
             //Moves the position of the playButton 
-            TranslateTransform translateTransform = new TranslateTransform();
-            translateTransform.X = -45;
-            playButton.RenderTransform = translateTransform;
+            if(!(playButton.RenderTransform is TranslateTransform))
+            {
+                TranslateTransform translateTransform = new TranslateTransform();
+                translateTransform.X = -45;
+                playButton.RenderTransform = translateTransform;
+            }
+            
             
 
             //Slide in transition for the pause button
@@ -129,9 +137,14 @@ namespace WpfApp1
             pauseButton.Visibility = Visibility.Hidden;
             playButton.Visibility = Visibility.Visible;
 
-            TranslateTransform translateTransform = new TranslateTransform();
-            translateTransform.X = -45;
-            pauseButton.RenderTransform = translateTransform;
+            
+            if(!(pauseButton.RenderTransform is TranslateTransform))
+            {
+                TranslateTransform translateTransform = new TranslateTransform();
+                translateTransform.X = -45;
+                pauseButton.RenderTransform = translateTransform;
+
+            }
 
 
 
@@ -148,21 +161,23 @@ namespace WpfApp1
             }
             else
             {
-                int PomodoroTime = (int)PomodoroSettingSection.Pomodoro;
+                int breakTime = PomodoroSettingSection.ShortBreak;
                 _timer.Stop();
                 _isPomodoro = !_isPomodoro;
-                _remainingTime = TimeSpan.FromMinutes(PomodoroTime);
+                _remainingTime = TimeSpan.FromMinutes(breakTime);
                 UpdateTimerDisplay();
+                _timer.Start();
             }
         }
 
         //Stop Button Click functionality 
         private void StopButton_Click(object sender,RoutedEventArgs e) {
-            int PomodoroTime = (int)PomodoroSettingSection.Pomodoro;
+            int breakTime = PomodoroSettingSection.ShortBreak;
             _timer.Stop();
             _isPomodoro = !_isPomodoro;
-            _remainingTime = TimeSpan.FromMinutes(PomodoroTime);
+            _remainingTime = TimeSpan.FromMinutes(breakTime);
             UpdateTimerDisplay();
+            _timer.Start();
 
             pauseButton.Visibility = Visibility.Hidden;
             playButton.Visibility = Visibility.Hidden;
@@ -171,18 +186,35 @@ namespace WpfApp1
             plusButton.Visibility = Visibility.Visible;
             skipButton.Visibility = Visibility.Visible;
         }
-
+        
+        
+        //Skip Button Functionality 
         private void SkipButton_Click(object sender,RoutedEventArgs e)
         {
             pauseButton.Visibility = Visibility.Hidden;
-            playButton.Visibility = Visibility.Visible;
             stopButton.Visibility = Visibility.Hidden;
 
             plusButton.Visibility = Visibility.Hidden;
             skipButton.Visibility = Visibility.Hidden;
 
+            
 
             playButton.RenderTransform = Transform.Identity;
+            playButton.Visibility = Visibility.Visible;
+
+            int pomodoroTime = PomodoroSettingSection.Pomodoro;
+            _timer.Stop();
+            _isPomodoro = !_isPomodoro;
+            _remainingTime = TimeSpan.FromMinutes(pomodoroTime);
+            UpdateTimerDisplay();
+            //_timer.Start();  
+
+        }
+        private void plusOneButton_Click(object sender,RoutedEventArgs e)
+        {
+            
+            _remainingTime += TimeSpan.FromMinutes(1);
+            UpdateTimerDisplay() ;
             
         }
 

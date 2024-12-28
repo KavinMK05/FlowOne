@@ -10,6 +10,9 @@
         <TextBlock Text="Pomodoro" FontFamily="Inter" FontSize="15" FontWeight="Medium" Canvas.Left="50" Canvas.Top="30"/>
         <TextBox Text="{Binding Pomodoro}" Width="40" Canvas.Left="450" 
                  Canvas.Top="30"/>
+        <TextBlock Text="Break" FontFamily="Inter" FontSize="15" FontWeight="Medium" Canvas.Left="50" Canvas.Top="60"/>
+        <TextBox Text="{Binding ShortBreak}" Width="40" Canvas.Left="450" 
+         Canvas.Top="60"/>
         <Button Content="Save" Canvas.Bottom="20" Canvas.Right="30" Click="SaveSettings"/>
     </Canvas>
 </Window>
