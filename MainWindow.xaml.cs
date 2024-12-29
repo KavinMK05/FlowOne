@@ -152,19 +152,40 @@ namespace WpfApp1
             }
             else
             {
-                _timer.Stop();
-                _isPomodoro = !_isPomodoro;
-                int shortBreakTime = Properties.Settings.Default.ShortBreak;
-                _remainingTime = TimeSpan.FromMinutes(shortBreakTime);
-                UpdateTimerDisplay();
-                _timer.Start();
+                if (_isPomodoro) {
+                    _timer.Stop();
+                    _isPomodoro = !_isPomodoro;
+                    int shortBreakTime = Properties.Settings.Default.ShortBreak;
+                    _remainingTime = TimeSpan.FromMinutes(shortBreakTime);
+                    UpdateTimerDisplay();
+                    _timer.Start();
 
-                pauseButton.Visibility = Visibility.Hidden;
-                playButton.Visibility = Visibility.Hidden;
-                stopButton.Visibility = Visibility.Hidden;
+                    pauseButton.Visibility = Visibility.Hidden;
+                    playButton.Visibility = Visibility.Hidden;
+                    stopButton.Visibility = Visibility.Hidden;
 
-                plusButton.Visibility = Visibility.Visible;
-                skipButton.Visibility = Visibility.Visible;
+                    plusButton.Visibility = Visibility.Visible;
+                    skipButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    pauseButton.Visibility = Visibility.Hidden;
+                    stopButton.Visibility = Visibility.Hidden;
+
+                    plusButton.Visibility = Visibility.Hidden;
+                    skipButton.Visibility = Visibility.Hidden;
+
+                    playButton.RenderTransform = Transform.Identity;
+                    playButton.Visibility = Visibility.Visible;
+
+
+                    _timer.Stop();
+                    _isPomodoro = !_isPomodoro;
+                    int pomodoroTime = Properties.Settings.Default.Pomodoro;
+                    _remainingTime = TimeSpan.FromMinutes(pomodoroTime);
+                    UpdateTimerDisplay();
+                }
+                
 
             }
         }
@@ -210,7 +231,7 @@ namespace WpfApp1
             int pomodoroTime = Properties.Settings.Default.Pomodoro;
             _remainingTime = TimeSpan.FromMinutes(pomodoroTime);
                 UpdateTimerDisplay();
-                //_timer.Start();  
+              
             
         }
         private void plusOneButton_Click(object sender, RoutedEventArgs e)
