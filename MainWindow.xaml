@@ -10,7 +10,7 @@
         
         AllowsTransparency="True" 
         Background="Transparent"
-        Title="MainWindow" Height="70" Width="300"
+        Title="Flow One" Height="70" Width="300"
         Topmost="true">
     <Window.Resources>
 

@@ -15,8 +15,8 @@ namespace WpfApp1
         private DispatcherTimer _timer;
         private TimeSpan _remainingTime;
         private bool _isPomodoro = true; //True for pomodoro , and false for break
-        
-
+        public event EventHandler<string> OnSettingsSaved;
+        public delegate void UpdateTimerDelegate();
 
 
         public MainWindow()
@@ -41,6 +41,8 @@ namespace WpfApp1
             //Pomodoro timer   
             _remainingTime = TimeSpan.FromMinutes(pomodoroTime); //Sets Timer 
             UpdateTimerDisplay();
+
+            
 
         }
         
@@ -140,7 +142,16 @@ namespace WpfApp1
 
 
         }
-
+        //When the save button is clicked in the settings page
+        public void UpdateTimerFromSettings()
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                int pomodorotime = Properties.Settings.Default.Pomodoro;
+                _remainingTime = TimeSpan.FromMinutes(pomodorotime);
+                UpdateTimerDisplay();
+            });
+        }
 
         //Every time a second is gone by
         private void Timer_tick(object? sender, EventArgs e)
@@ -242,10 +253,13 @@ namespace WpfApp1
 
         }
 
+        
+
         //Updating the Timer text box
         private void UpdateTimerDisplay()
         {
             Focus_timer.Text = $"{(int)_remainingTime.TotalMinutes} : {_remainingTime.Seconds:00}";
+
 
         }
 
@@ -255,7 +269,10 @@ namespace WpfApp1
         private void showSettings(object sender, RoutedEventArgs e)
         {
             settings_window settings_Window = new();
+            settings_Window.UpdateTimer = UpdateTimerFromSettings;
             settings_Window.ShowDialog();
+
+            
 
             
         }
