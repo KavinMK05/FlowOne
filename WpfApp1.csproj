@@ -19,6 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="assets\timer_ends.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="assets\plus_one.png" />
     <Resource Include="assets\menu.png" />
     <Resource Include="assets\pause.png" />

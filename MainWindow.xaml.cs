@@ -69,7 +69,14 @@ namespace WpfApp1
             menu_icon.BeginAnimation(UIElement.OpacityProperty, fadeOut);
         }
 
-
+        private static void PlaySound()
+        {
+            
+            MediaPlayer mediaPlayer = new();
+            mediaPlayer.Open(new Uri(System.Environment.CurrentDirectory + @"\assets\timer_ends.mp3"));
+            mediaPlayer.Volume = 1;
+            mediaPlayer.Play();
+        }
 
         private void StartButton_Click(object sender, MouseEventArgs e)
         {
@@ -153,6 +160,7 @@ namespace WpfApp1
             });
         }
 
+
         //Every time a second is gone by
         private void Timer_tick(object? sender, EventArgs e)
         {
@@ -163,11 +171,19 @@ namespace WpfApp1
             }
             else
             {
+                //Play the notifcation sound
+                PlaySound();
                 if (_isPomodoro) {
                     _timer.Stop();
                     _isPomodoro = !_isPomodoro;
                     int shortBreakTime = Properties.Settings.Default.ShortBreak;
                     _remainingTime = TimeSpan.FromMinutes(shortBreakTime);
+
+                    
+
+                    //Changes the color of the indicator to Green
+                    BrushConverter bc = new();
+                    Indicator.Fill = (Brush)bc.ConvertFromString("#78C864");
                     UpdateTimerDisplay();
                     _timer.Start();
 
@@ -189,6 +205,10 @@ namespace WpfApp1
                     playButton.RenderTransform = Transform.Identity;
                     playButton.Visibility = Visibility.Visible;
 
+                    //Changes the color of the indicator to Red
+                    BrushConverter bc = new();
+                    Indicator.Fill = (Brush)bc.ConvertFromString("#FF5F5F");
+                    UpdateTimerDisplay();
 
                     _timer.Stop();
                     _isPomodoro = !_isPomodoro;
@@ -211,7 +231,14 @@ namespace WpfApp1
             int shortBreakTime = Properties.Settings.Default.ShortBreak;
             _remainingTime = TimeSpan.FromMinutes(shortBreakTime);
                 UpdateTimerDisplay();
-                _timer.Start();
+
+            //Changes the color of the indicator to Green
+            BrushConverter bc = new();
+            Indicator.Fill = (Brush)bc.ConvertFromString("#78C864");
+            UpdateTimerDisplay();
+            
+
+            _timer.Start();
 
                 pauseButton.Visibility = Visibility.Hidden;
                 playButton.Visibility = Visibility.Hidden;
@@ -227,17 +254,22 @@ namespace WpfApp1
         private void SkipButton_Click(object sender, RoutedEventArgs e)
         {
             
-                pauseButton.Visibility = Visibility.Hidden;
-                stopButton.Visibility = Visibility.Hidden;
+            pauseButton.Visibility = Visibility.Hidden;
+            stopButton.Visibility = Visibility.Hidden;
 
-                plusButton.Visibility = Visibility.Hidden;
-                skipButton.Visibility = Visibility.Hidden;
+            plusButton.Visibility = Visibility.Hidden;
+            skipButton.Visibility = Visibility.Hidden;
 
-                playButton.RenderTransform = Transform.Identity;
-                playButton.Visibility = Visibility.Visible;
+            playButton.RenderTransform = Transform.Identity;
+            playButton.Visibility = Visibility.Visible;
 
-                
-                _timer.Stop();
+            //Changes the color of the indicator to Red
+            BrushConverter bc = new();
+            Indicator.Fill = (Brush)bc.ConvertFromString("#FF5F5F");
+            UpdateTimerDisplay();
+
+            _timer.Stop();
+
                 _isPomodoro = !_isPomodoro;
             int pomodoroTime = Properties.Settings.Default.Pomodoro;
             _remainingTime = TimeSpan.FromMinutes(pomodoroTime);
