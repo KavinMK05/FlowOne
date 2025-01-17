@@ -290,8 +290,8 @@ namespace WpfApp1
         //Updating the Timer text box
         private void UpdateTimerDisplay()
         {
-            Focus_timer.Text = $"{(int)_remainingTime.TotalMinutes} : {_remainingTime.Seconds:00}";
-
+            Focus_timer_minutes.Text = $"{(int)_remainingTime.TotalMinutes}";
+            Focus_timer_seconds.Text = $"{_remainingTime.Seconds:00}";
 
         }
 
