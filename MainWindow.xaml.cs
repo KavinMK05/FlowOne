@@ -17,7 +17,8 @@ namespace WpfApp1
         private bool _isPomodoro = true; //True for pomodoro , and false for break
         public event EventHandler<string> OnSettingsSaved;
         public delegate void UpdateTimerDelegate();
-
+        public delegate void UpdateTotalSessionDelegate();
+        private bool _isFirstSession = true;
 
         public MainWindow()
         {
@@ -28,7 +29,8 @@ namespace WpfApp1
             menu_icon.MouseLeave += Menu_MouseLeave;
 
             int pomodoroTime = Properties.Settings.Default.Pomodoro;
-            int shortBreakTime = Properties.Settings.Default.ShortBreak;
+            
+            int totalSessions = Properties.Settings.Default.Sessions;
 
             //New Dispatcher Timer
 
@@ -36,7 +38,11 @@ namespace WpfApp1
             _timer.Interval = TimeSpan.FromSeconds(1); //Sets Interval
             _timer.Tick += Timer_tick;
 
-
+            //Load total sessions
+            TotalSessions.Text = totalSessions.ToString();
+            int sessionsPaseed = 0;
+            SessionsPassed.Text = sessionsPaseed.ToString();
+            
 
             //Pomodoro timer   
             _remainingTime = TimeSpan.FromMinutes(pomodoroTime); //Sets Timer 
@@ -45,9 +51,24 @@ namespace WpfApp1
             
 
         }
-        
-        
-        
+
+        //Updating the session number
+        private void SessionNext_Click(object sender, RoutedEventArgs e)
+        {
+            int totalSessions = Properties.Settings.Default.Sessions;
+            if (_isFirstSession == true)
+            {
+                if (int.Parse(SessionsPassed.Text) < totalSessions)
+                {
+                    SessionsPassed.Text = (int.Parse(SessionsPassed.Text) + 1).ToString();
+
+                }
+                
+                
+            }
+            
+        }
+
         //To make the window draggable 
         private void DragRegion_mouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -84,7 +105,11 @@ namespace WpfApp1
             _timer.Start();
             playButton.Visibility = Visibility.Hidden;
             pauseButton.Visibility = Visibility.Visible;
-            
+
+            SessionNext_Click(sender, e);
+            _isFirstSession = false;
+
+
             //Moves the position of the playButton 
             TranslateTransform translateTransform = new TranslateTransform();
             translateTransform.X = -45;
@@ -130,6 +155,32 @@ namespace WpfApp1
 
         }
 
+        //When the Task label is double clicked 
+        private void Task_box_doubleClick(object sender,MouseButtonEventArgs e)
+        {
+            TaskBox.IsReadOnly = false;
+            TaskBox.Focus();
+            TaskBox.SelectAll();
+            
+        }
+
+        private void Task_box_keyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (TaskBox.Text.Trim() == "")
+                {
+                    TaskBox.Text = "Untitled";
+                }
+                TaskBox.IsReadOnly = true;
+                
+                Keyboard.ClearFocus();
+
+                
+                
+            }
+
+        }
 
         private void PauseButton_Click(object sender, MouseEventArgs e)
         {
@@ -149,6 +200,16 @@ namespace WpfApp1
 
 
         }
+        //Update the total session number from the settings page
+        public void UpdateTotalSessionFromSettings()
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                int totalSessions = Properties.Settings.Default.Sessions;
+                TotalSessions.Text = totalSessions.ToString();
+            });
+        }
+
         //When the save button is clicked in the settings page
         public void UpdateTimerFromSettings()
         {
@@ -179,7 +240,7 @@ namespace WpfApp1
                     int shortBreakTime = Properties.Settings.Default.ShortBreak;
                     _remainingTime = TimeSpan.FromMinutes(shortBreakTime);
 
-                    
+                    _isFirstSession = true;
 
                     //Changes the color of the indicator to Green
                     BrushConverter bc = new();
@@ -215,6 +276,12 @@ namespace WpfApp1
                     int pomodoroTime = Properties.Settings.Default.Pomodoro;
                     _remainingTime = TimeSpan.FromMinutes(pomodoroTime);
                     UpdateTimerDisplay();
+
+
+                    if (int.Parse(SessionsPassed.Text) == Properties.Settings.Default.Sessions)
+                    {
+                        SessionsPassed.Text = "0";
+                    }
                 }
                 
 
@@ -224,7 +291,7 @@ namespace WpfApp1
         //Stop Button Click functionality 
         private void StopButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            _isFirstSession = true;
                 
                 _timer.Stop();
                 _isPomodoro = !_isPomodoro;
@@ -274,8 +341,13 @@ namespace WpfApp1
             int pomodoroTime = Properties.Settings.Default.Pomodoro;
             _remainingTime = TimeSpan.FromMinutes(pomodoroTime);
                 UpdateTimerDisplay();
-              
             
+            if (int.Parse(SessionsPassed.Text) == Properties.Settings.Default.Sessions)
+            {
+                SessionsPassed.Text = "0";
+            }
+
+
         }
         private void plusOneButton_Click(object sender, RoutedEventArgs e)
         {
@@ -285,7 +357,9 @@ namespace WpfApp1
 
         }
 
-        
+       
+
+
 
         //Updating the Timer text box
         private void UpdateTimerDisplay()
@@ -302,6 +376,8 @@ namespace WpfApp1
         {
             settings_window settings_Window = new();
             settings_Window.UpdateTimer = UpdateTimerFromSettings;
+
+            settings_Window.UpdateTotalSession = UpdateTotalSessionFromSettings;
             settings_Window.ShowDialog();
 
             
