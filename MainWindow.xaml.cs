@@ -19,7 +19,7 @@ namespace WpfApp1
         public delegate void UpdateTimerDelegate();
         public delegate void UpdateTotalSessionDelegate();
         private bool _isFirstSession = true;
-
+        private MediaPlayer _mediaPlayer = new ();
         public MainWindow()
         {
             this.InitializeComponent();
@@ -90,13 +90,13 @@ namespace WpfApp1
             menu_icon.BeginAnimation(UIElement.OpacityProperty, fadeOut);
         }
 
-        private static void PlaySound()
+        private void PlaySound()
         {
             
-            MediaPlayer mediaPlayer = new();
-            mediaPlayer.Open(new Uri(System.Environment.CurrentDirectory + @"\assets\timer_ends.mp3"));
-            mediaPlayer.Volume = 1;
-            mediaPlayer.Play();
+            
+            _mediaPlayer.Open(new Uri(System.Environment.CurrentDirectory + @"\assets\timer_ends.mp3"));
+            _mediaPlayer.Volume = 1;
+            _mediaPlayer.Play();
         }
 
         private void StartButton_Click(object sender, MouseEventArgs e)
