@@ -1,7 +1,11 @@
 # FlowOne 🍅
+
 <p align="center">
   <img src="screenshots/FlowOne.gif" alt="FlowOne Demo" width="600">
 </p>
+
+![WPF](https://img.shields.io/badge/WPF-512BD4?style=for-the-badge&logo=.net&logoColor=white) ![.NET 8](https://img.shields.io/badge/.NET%208.0-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
+
 **FlowOne** is a minimalist, modern Pomodoro timer for **Windows 10/11** built with WPF and .NET 8. Designed to stay out of your way while keeping you focused, it features a compact, floating UI with customizable session settings.
 
 ## ✨ Features
