@@ -46,5 +46,17 @@ namespace WpfApp1.Properties {
                 this["ShortBreak"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int Sessions {
+            get {
+                return ((int)(this["Sessions"]));
+            }
+            set {
+                this["Sessions"] = value;
+            }
+        }
     }
 }

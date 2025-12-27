@@ -6,9 +6,18 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\LATO-BLACK.TTF" />
+    <None Remove="assets\LATO-BLACKITALIC.TTF" />
+    <None Remove="assets\LATO-BOLD.TTF" />
+    <None Remove="assets\LATO-BOLDITALIC.TTF" />
+    <None Remove="assets\LATO-ITALIC.TTF" />
+    <None Remove="assets\LATO-LIGHT.TTF" />
+    <None Remove="assets\LATO-LIGHTITALIC.TTF" />
+    <None Remove="assets\LATO-REGULAR.TTF" />
     <None Remove="assets\menu.png" />
     <None Remove="assets\pause.png" />
     <None Remove="assets\plus_one.png" />
@@ -19,6 +28,39 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="assets\timer_ends.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="assets\LATO-LIGHTITALIC.TTF">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="assets\LATO-BLACK.TTF">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\LATO-BLACKITALIC.TTF">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\LATO-BOLD.TTF">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\LATO-BOLDITALIC.TTF">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\LATO-ITALIC.TTF">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\LATO-LIGHT.TTF">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\LATO-REGULAR.TTF">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="assets\plus_one.png" />
     <Resource Include="assets\menu.png" />
     <Resource Include="assets\pause.png" />
@@ -40,6 +82,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 
 </Project>

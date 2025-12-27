@@ -13,6 +13,10 @@
         <TextBlock Text="Break" FontFamily="Inter" FontSize="15" FontWeight="Medium" Canvas.Left="50" Canvas.Top="60"/>
         <TextBox x:Name="ShortBreakTextBox" Width="40" Canvas.Left="450" 
          Canvas.Top="60"/>
+
+        <TextBlock Text="Total sessions" FontFamily="Inter" FontSize="15" FontWeight="Medium" Canvas.Left="50" Canvas.Top="90"/>
+        <TextBox x:Name="SessionNumber" Width="40" Canvas.Left="450" Canvas.Top="90"/>
+
         <Button Content="Save" Canvas.Bottom="20" Canvas.Right="30" Click="SaveButton_Click"/>
     </Canvas>
 </Window>
