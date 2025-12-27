@@ -1,5 +1,5 @@
 # FlowOne 🍅
-
+![FlowOne Demo](screenshots/FlowOne.gif)
 **FlowOne** is a minimalist, modern Pomodoro timer built with WPF and .NET 8. Designed to stay out of your way while keeping you focused, it features a compact, floating UI with customizable session settings.
 
 ## ✨ Features
@@ -11,18 +11,18 @@
 
 
 * **Task Tracking:** Built-in editable task box to label your current focus session.
-* *Tip: Double-click the text to edit your task name*.
+  * *Tip: Double-click the text to edit your task name*.
 
 
 * **Session Management:**
-* Tracks completed sessions vs. total goal (e.g., 1/4).
-* Configurable total session goals via Settings.
+  * Tracks completed sessions vs. total goal (e.g., 1/4).
+  * Configurable total session goals via Settings.
 
 
 * **Smart Controls:**
-* **Play/Pause/Stop:** Standard timer controls with smooth transition animations.
-* **Skip:** Instantly skip the current session or break.
-* **+1 Minute:** Quickly add an extra minute to your current timer.
+  * **Play/Pause/Stop:** Standard timer controls with smooth transition animations.
+  * **Skip:** Instantly skip the current session or break.
+  * **+1 Minute:** Quickly add an extra minute to your current timer.
 
 
 * **Customizable Settings:** Adjust Pomodoro duration, break duration, and total session targets.
@@ -44,26 +44,26 @@
 ### Installation & Run
 
 1. **Clone the repository:**
-```bash
-git clone https://github.com/kavinmk05/flowone.git
-cd flowone
-
-```
+    ```bash
+    git clone https://github.com/kavinmk05/flowone.git
+    cd flowone
+    
+    ```
 
 
 2. **Open the solution:**
-Open `WpfApp1.sln` in Visual Studio 2022.
+  Open `WpfApp1.sln` in Visual Studio 2022.
 3. **Build and Run:**
-Press `F5` to start the application.
+  Press `F5` to start the application.
 
 ## 🎮 Usage Guide
 
 1. **Start a Session:** Click the **Play** button to begin your focus timer.
 2. **Edit Task:** Double-click "Flow one" (or the current text) to type your specific task name. Press `Enter` to save.
 3. **Settings:** Hover over the left side to reveal the **Menu** icon. Click it to open Settings and configure:
-* Pomodoro Length (minutes)
-* Break Length (minutes)
-* Total Sessions Goal
+    * Pomodoro Length (minutes)
+    * Break Length (minutes)
+    * Total Sessions Goal
 
 
 4. **Drag & Drop:** Click and hold anywhere on the white background to move the widget around your screen.
